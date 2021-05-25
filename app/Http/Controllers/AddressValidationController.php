@@ -20,7 +20,7 @@ class AddressValidationController {
 
             // need to divide by characters and words
             // total is 90 characters
-            $inputAddress = preg_replace('/\s+/', ' ',implode('        ', $formData));
+            $inputAddress = preg_replace('/\s+/', ' ', implode(' ', $formData));
 
             $explodedAddress = [
                 'address_1' => null,
@@ -30,7 +30,7 @@ class AddressValidationController {
 
             for ( $i = 1; $i <= 3; $i ++ )
             {
-                $trimmedAddress = \Str::limit($inputAddress, 30, null);
+                $trimmedAddress = $this->characterPerRowTrimmer($inputAddress, 30, null);
 
                 $explodedAddress['address_' . $i] = $trimmedAddress;
 
@@ -41,14 +41,25 @@ class AddressValidationController {
             $validator->errors()->add('acceptable_address_format', $explodedAddress);
         });
 
-        if ($validator->fails()) {
+        if ( $validator->fails() )
+        {
             return response()->json(
                 $validator->getMessageBag()->toArray(),
                 422
             );
         }
 
-        return 'success';
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
+    private function characterPerRowTrimmer($value, $limit = 100, $end = '...')
+    {
+        $limit    = $limit - mb_strlen($end); // Take into account $end string into the limit
+        $valuelen = mb_strlen($value);
+
+        return $limit < $valuelen ? mb_substr($value, 0, mb_strrpos($value, ' ', $limit - $valuelen)) . $end : $value;
     }
 
 }
