@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "c15962b8-e40c-4a1b-8d29-bdffdd6cc3e3",
+		"name": "FashionValet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Answer for Question 2: Get Drivers and Bookings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://fashionvalet_tests.test/api/rides-report",
+					"protocol": "https",
+					"host": [
+						"fashionvalet_tests",
+						"test"
+					],
+					"path": [
+						"api",
+						"rides-report"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Answer for Question 3: Shipping Address Validation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "address_1",
+							"value": "572 JALAN 30/39 TAMAN PETALING KEPONG BARU 52100 KUALA LUMPUR",
+							"type": "text"
+						},
+						{
+							"key": "address_2",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "address_3",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://fashionvalet_tests.test/api/validate/shipping-address",
+					"protocol": "https",
+					"host": [
+						"fashionvalet_tests",
+						"test"
+					],
+					"path": [
+						"api",
+						"validate",
+						"shipping-address"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

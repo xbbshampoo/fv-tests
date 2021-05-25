@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/validate/shipping-address', '\App\Http\Controllers\AddressValidationController@test');
+Route::get('/rides-report', 'App\Http\Controllers\API\RidesReportController@index');
+
+Route::post('/validate/shipping-address', '\App\Http\Controllers\API\AddressValidationController@validate');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

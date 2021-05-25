@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Booking;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,10 +19,11 @@ class CreateBookingsTable extends Migration {
             $table->dateTime('created_at_local');
             $table->unsignedInteger('driver_id');
             $table->unsignedInteger('passenger_id');
-            $table->enum('state', [ 'COMPLETED', 'CANCELLED_PASSENGER', 'CANCELLED_DRIVER' ]);
+            $table->enum('state', [ Booking::COMPLETED_STATE, Booking::CANCELLED_PASSENGER_STATE, Booking::CANCELLED_DRIVER_STATE ]);
             $table->unsignedInteger('country_id');
             $table->decimal('fare');
-            $table->timestamps();
+
+            $table->index(['driver_id', 'state', 'passenger_id', 'fare'], 'idx_01');
         });
     }
 

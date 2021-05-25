@@ -18,7 +18,6 @@ class CreateDriversTable extends Migration
             $table->string('name', 255);
             $table->string('phone_number', 255);
             $table->string('email', 255);
-            $table->timestamps();
 
             $table->unique(['email'], 'idx_email_unique');
         });

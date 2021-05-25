@@ -1,11 +1,10 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
 
 class AddressValidationController {
 
-    public function test(Request $request)
+    public function validate(Request $request)
     {
         // address_1, address_2, address_3
         // each line of address maximum 30 characters
@@ -15,7 +14,8 @@ class AddressValidationController {
             'address_3' => 'max:30',
         ]);
 
-        $validator->after(function (Validator $validator) {
+        if ( $validator->fails() )
+        {
             $formData = $validator->getData();
 
             // need to divide by characters and words
@@ -38,11 +38,9 @@ class AddressValidationController {
                 $inputAddress = trim(str_replace($trimmedAddress, '', $inputAddress));
             }
 
+            $validator->errors()->add('success', false);
             $validator->errors()->add('acceptable_address_format', $explodedAddress);
-        });
 
-        if ( $validator->fails() )
-        {
             return response()->json(
                 $validator->getMessageBag()->toArray(),
                 422
@@ -50,7 +48,9 @@ class AddressValidationController {
         }
 
         return response()->json([
-            'success' => true,
+            'success' => [
+                true
+            ],
         ]);
     }
 

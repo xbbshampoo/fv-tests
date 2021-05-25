@@ -12,19 +12,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $phone_number
  * @property string $email
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Booking[] $bookings
  * @property-read int|null $bookings_count
  * @method static \Illuminate\Database\Eloquent\Builder|Driver newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Driver newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Driver query()
- * @method static \Illuminate\Database\Eloquent\Builder|Driver whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Driver whereDriverId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Driver whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Driver whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Driver wherePhoneNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Driver whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Driver extends Model {
@@ -37,6 +33,13 @@ class Driver extends Model {
      * @var string
      */
     protected $primaryKey = 'driver_id';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     public function bookings()
     {
