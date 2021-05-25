@@ -11,11 +11,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://fashionvalet_tests.test/api/rides-report",
+					"raw": "https://fashion-valet-test-michael.herokuapp.com/api/rides-report",
 					"protocol": "https",
 					"host": [
-						"fashionvalet_tests",
-						"test"
+						"fashion-valet-test-michael",
+						"herokuapp",
+						"com"
 					],
 					"path": [
 						"api",
@@ -53,11 +54,12 @@
 					]
 				},
 				"url": {
-					"raw": "https://fashionvalet_tests.test/api/validate/shipping-address",
+					"raw": "https://fashion-valet-test-michael.herokuapp.com/api/validate/shipping-address",
 					"protocol": "https",
 					"host": [
-						"fashionvalet_tests",
-						"test"
+						"fashion-valet-test-michael",
+						"herokuapp",
+						"com"
 					],
 					"path": [
 						"api",
